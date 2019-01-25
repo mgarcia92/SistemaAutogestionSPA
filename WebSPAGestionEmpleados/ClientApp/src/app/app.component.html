@@ -1,0 +1,27 @@
+<div [ngClass]="router.url != '/login' ? 'wrapper' :'wrapper' ">
+  <app-header *ngIf="(router.url !== '/login') && (router.url !== '/')"></app-header>
+  <app-main-sidebar *ngIf="(router.url !== '/login') && (router.url !== '/')"></app-main-sidebar>
+  <!-- Content Wrapper. Contains page content -->
+  <div [ngClass]="router.url != '/' &&  router.url != '/login' ? 'content-wrapper' : 'content-wrapper-login'">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" *ngIf="(router.url !== '/login') && (router.url !== '/')">
+      <h1>
+        <!--<small>Control panel</small>-->
+        <small>ALIMENTOS  DIFRESCA, C.A.</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- /.row (main row) -->
+      <router-outlet></router-outlet>
+    </section>
+    <!-- /.content -->
+  </div>
+  <app-footer  *ngIf="(router.url !== '/login') && (router.url !== '/')"></app-footer>
+  <app-settings  *ngIf="(router.url !== '/login') && (router.url !== '/')"></app-settings>
+</div>
+

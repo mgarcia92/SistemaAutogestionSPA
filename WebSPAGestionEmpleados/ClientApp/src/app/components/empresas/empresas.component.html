@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Empresa</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-12 col-md-1 col-md-offset-10">
+            <button class="btn btn-primary">Sugerencias</button>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Informacion de Empresa:</h3>
+                  <!-- <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Ficha: </strong> {{empresasData.fichaCd}}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Departamento: </strong>{{empresasData.departamento}}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Sueldo Diario: </strong>{{empresasData.sueldo3Sal | currency:'VEF':'symbol-narrow'}}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Sueldo Mensual: </strong>{{empresasData.sueldoMen | currency:'VEF':'symbol-narrow'}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Fecha Ingreso: </strong>{{empresasData.ingresoDate | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Jefe: </strong>{{empresasData.jefe}}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <p><strong>Cargo: </strong>{{empresasData.cargo}}</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+          </div>
+          <!-- /.progress-group -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+</div>

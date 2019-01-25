@@ -1,0 +1,17 @@
+.login-background{
+  background-color: #fff;
+}
+
+.box-body-position{
+  position: relative;
+}
+
+.loader-spinner{
+  text-align: center;
+  font-size: 2em;
+  position: absolute;
+  top:40%;
+  left: 45%;
+}
+
+

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Saldos de Conceptos Fijos</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-1 col-md-offset-10">
+            <button class="btn btn-primary">Sugerencias</button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>CONCEPTO</th>
+            <th>DESCRIPCIÓN</th>
+            <th>CANTIDAD</th>
+            <th>VALOR</th>
+            <th>SALDO</th>
+          </tr>
+          <tr *ngFor="let saldo of saldosData">
+            <td align="center">{{saldo.conceptoNbr}}</td>
+            <td>{{saldo.conceptoDesc}}</td>
+            <td align="right">{{saldo.cantidadQty  | number: '1.2-2'}}</td>
+            <td align="right">{{saldo.valorSal | number: '1.2-2'}}</td>
+            <td align="right">{{saldo.saldoSal | number: '1.2-2'}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

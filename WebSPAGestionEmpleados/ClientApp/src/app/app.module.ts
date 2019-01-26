@@ -1,3 +1,4 @@
+import { EmpresaServiceService } from './services/empresa/empresa-service.service';
 import { FamiliaresComponent } from './components/familiares/familiares.component';
 import { PersonalService } from './services/personal/personal.service';
 import { AuthenticationGuard } from './services/guards/authentication.guard';
@@ -70,6 +71,7 @@ const routes = [
   providers: [
     LoginServiceService,
     TrabajadoresService,
+    EmpresaServiceService,
     AuthenticationGuard
   ],
   bootstrap: [AppComponent]

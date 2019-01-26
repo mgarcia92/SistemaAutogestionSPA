@@ -1,3 +1,7 @@
+<div #alert  class="alert" [ngClass]="{'alert-success': saveSuccess  == true,'alert-warning': saveSuccess  == false }" *ngIf="message != ''">
+    <h4><i class="icon fa fa-info"></i> Mensaje!</h4>
+      {{message}}
+  </div>
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
@@ -5,39 +9,63 @@
         <h3 class="box-title">Niveles de Trabajadores</h3>
         <div class="row">
           <!--<div class="col-xs-12 col-md-1 col-md-offset-10">-->
-          <div class="col-md-12">
-            <!--<button class="btn btn-primary">Sugerencias</button>-->
-            <br />
-
-
-            <!--<button class="input-append">Ficha:</button>-->
-            <button id="FichaID">Ficha:</button>
-
-
-
+          <form method="POST" (ngSubmit)="sendDataNivel(f)" #f="ngForm" class="form-inline">
+          <div class="col-sm-12 col-md-3">
+              <div class="form-group">
+                <label>Ficha</label>
+                <select class="form-control select2" id="fichaId" name="ficha" #corporation  ngModel multiple="multiple" data-placeholder="Seleccione una ficha"
+                        style="width: 100%;">
+                  <option *ngFor="let ficha of fichas" [value]="ficha.value">{{ficha.value}}</option>
+                 </select>
           </div>
+
+        </div>
+          <div class="col-sm-12 col-md-3">
+            <div class="form-group">
+              <label for="nivelUsuario">Nivel Usuario</label>
+              <input type="number" name="nivel_usuario" min="0" ngModel class="form-control" id="nivelUsuario" placeholder="Nivel Usuario">
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-3">
+            <div class="form-group">
+              <label for="nivelOrganigrama">Nivel Organigrama</label>
+              <input type="number" name="nivel_organigrama" min="0" ngModel class="form-control" id="nivelOrganigrama" placeholder="Nivel Organigrama">
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-3">
+              <button type="submit"  [ngStyle]="{'margin-top': '1.5em'}" name="Guardar" class="btn btn-primary" >Guardar</button>
+          </div>
+        </form>
+            <br/>
+            <br/>
         </div>
         <br />
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <th>FICHA</th>
+                  <th>NOMBRES</th>
+                  <th>NIVEL USUARIO</th>
+                  <th>NIVEL ORGANIGRAMA</th>
+                </tr>
+                <tr *ngFor="let nivel of nivelesData">
+                  <td>{{nivel.fichaCd}}</td>
+                  <td>{{nivel.fichaNm}}</td>
+                  <td>{{nivel.nivelNbr}}</td>
+                  <td>{{nivel.nivelOrg}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
     </div>
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <th>FICHA</th>
-            <th>NOMBRES</th>
-            <th>NIVEL USUARIO</th>
-            <th>NIVEL ORGANIGRAMA</th>
-          </tr>
-          <tr *ngFor="let nivel of nivelesData">
-            <td align="center">{{nivel.fichaCd}}</td>
-            <td>{{nivel.fichaNm}}</td>
-            <td>{{nivel.nivelNbr}}</td>
-            <td>{{nivel.nivelOrg}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </div>

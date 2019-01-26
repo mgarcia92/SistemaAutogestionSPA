@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebSPAGestionEmpleados.Repository
 {
-    public class GenericRepository<TContext> where TContext : DbContext, new()
+    public class GenericRepository<TContext> : IDisposable where TContext : DbContext, new() 
     {
         public TContext model = null;
 
@@ -22,24 +22,29 @@ namespace WebSPAGestionEmpleados.Repository
         {
             return model.Set<T>().Find(id);
         }
-        public void Agregar<T>(T item) where T : class
+        public int Agregar<T>(T item) where T : class
         {
             model.Set<T>().Add(item);
-            Guardar();
+            return Guardar();
         }
-        public void Modificar<T>(T item) where T : class
+        public int Modificar<T>(T item) where T : class
         {
             model.Entry(item).State = EntityState.Modified;
-            Guardar();
+            return Guardar();
         }
-        public void Eliminar<T>(T item) where T : class
+        public int Eliminar<T>(T item) where T : class
         {
             model.Set<T>().Remove(item);
-            Guardar();
+           return Guardar();
         }
-        private void Guardar()
+        private int Guardar()
         {
-            model.SaveChanges();
+            return model.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

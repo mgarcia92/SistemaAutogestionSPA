@@ -15,7 +15,8 @@ export class EmpresasComponent implements OnInit {
     cargo : "",
     ingresoDate: null,
     jefe: "",
-    sueldo3Sal: 0
+    sueldo3Sal: 0,
+    sueldoMen:0
   };
   constructor(private trabajadoresService:TrabajadoresService) { }
 

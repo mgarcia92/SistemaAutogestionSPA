@@ -6,7 +6,8 @@ import { serverPath } from '../paths/paths';
 export class EmpresaServiceService {
   private headers : HttpHeaders;
   private path: string = serverPath;
-  private ficha : string =  JSON.parse(sessionStorage.getItem("userId")).fichaCd;
+  private ficha: string = JSON.parse(sessionStorage.getItem("userId")).fichaCd;
+  private cedula: string = JSON.parse(sessionStorage.getItem("cedulaId")).cedulaNbr;
 
   constructor(private http:HttpClient) {
     this.headers = new HttpHeaders();
@@ -18,5 +19,9 @@ export class EmpresaServiceService {
     return this.http.post(url,{'FichaCd': nivel.fichaCd,'NivelNbr': nivel.nivelNbr,'nivelOrg' :nivel.nivelOrg},{headers:this.headers});
   }
 
+  //public SaveUsuario(usuario: any) {
+  //  let url = `${this.path}/api/EmpresasData/SaveUsuario`;
+  //  return this.http.post(url, { 'CedulaNbr': usuario.cedulaNbr,'RoleCd': usuario.roleCd,'ActivoFg': usuario.ActivoFg }, { headers: this.headers });
+  //}
 
 }

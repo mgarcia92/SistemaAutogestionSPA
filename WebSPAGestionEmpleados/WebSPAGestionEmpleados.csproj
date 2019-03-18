@@ -19,8 +19,54 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="ClientApp\src\app\components\funcones\**" />
+    <Compile Remove="ClientApp\src\app\components\roles\**" />
+    <Compile Remove="ClientApp\src\app\services\administraciones\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\components\funcones\**" />
+    <Content Remove="ClientApp\src\app\components\roles\**" />
+    <Content Remove="ClientApp\src\app\services\administraciones\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\components\funcones\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\components\roles\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\services\administraciones\**" />
+    <None Remove="ClientApp\src\app\components\funcones\**" />
+    <None Remove="ClientApp\src\app\components\roles\**" />
+    <None Remove="ClientApp\src\app\services\administraciones\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\AdministradorDataController.cs" />
+    <Compile Remove="Controllers\EmpresasDataController - Copia.cs" />
+    <Compile Remove="ModelsApi\NivelApi - Copia.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\Models\NivelesInfo - Copia %282%29.ts" />
+    <None Remove="ClientApp\src\app\Models\NivelesInfo - Copia %282%29.ts" />
+    <None Remove="ClientApp\src\app\services\configuraciones.service.spec.ts" />
+    <None Remove="ClientApp\src\app\services\configuraciones.service.spec.ts" />
+    <None Remove="ClientApp\src\app\services\configuraciones.service.ts" />
+    <None Remove="ClientApp\src\app\services\configuraciones.service.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\node_modules\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="ClientApp\node_modules\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="ClientApp\node_modules\datatables.net-bs\License.txt" />
+    <Content Include="ClientApp\node_modules\datatables.net-bs\package.json" />
+    <Content Include="ClientApp\node_modules\datatables.net\License.txt" />
+    <Content Include="ClientApp\node_modules\datatables.net\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\services\configuraciones\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClientApp\node_modules\datatables.net-bs\js\dataTables.bootstrap.js" />
+    <None Include="ClientApp\node_modules\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <None Include="ClientApp\node_modules\datatables.net-bs\Readme.md" />
+    <None Include="ClientApp\node_modules\datatables.net\js\jquery.dataTables.js" />
+    <None Include="ClientApp\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="ClientApp\node_modules\datatables.net\Readme.md" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <Exec Command="node --version" ContinueOnError="true">

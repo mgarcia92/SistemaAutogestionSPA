@@ -9,29 +9,30 @@
           </div>
         </div>
         <br />
-      </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <th>CONCEPTO</th>
-            <th>DESCRIPCIÓN</th>
-            <th>CANTIDAD</th>
-            <th>VALOR</th>
-            <th>SALDO</th>
-          </tr>
-          <tr *ngFor="let saldo of saldosData">
-            <td align="center">{{saldo.conceptoNbr}}</td>
-            <td>{{saldo.conceptoDesc}}</td>
-            <td align="right">{{saldo.cantidadQty  | number: '1.2-2'}}</td>
-            <td align="right">{{saldo.valorSal | number: '1.2-2'}}</td>
-            <td align="right">{{saldo.saldoSal | number: '1.2-2'}}</td>
-          </tr>
 
-        </tbody>
-      </table>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th class="text-center">CONCEPTO</th>
+                <th>DESCRIPCIÓN</th>
+                <th class="text-right">CANTIDAD</th>
+                <th class="text-right">VALOR</th>
+                <th class="text-right">SALDO</th>
+              </tr>
+              <tr *ngFor="let saldo of saldosData">
+                <td align="center">{{saldo.conceptoNbr}}</td>
+                <td>{{saldo.conceptoDesc}}</td>
+                <td align="right">{{saldo.cantidadQty | number: '1.2-2'}}</td>
+                <td align="right">{{saldo.valorSal | number: '1.2-2'}}</td>
+                <td align="right">{{saldo.saldoSal | number: '1.2-2'}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

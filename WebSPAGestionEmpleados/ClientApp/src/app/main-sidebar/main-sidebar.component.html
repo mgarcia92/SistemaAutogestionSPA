@@ -75,8 +75,6 @@
     </li>
 
 
-
-
     <li class="treeview">
       <a>
         <i class="fa fa-pie-chart"></i>
@@ -94,7 +92,7 @@
           </a>
           <ul class="treeview-menu">
             <!--<li><a><i class="fa fa-circle-o"></i>Mantenimiento de Niveles</a></li>-->
-            <li><a [routerLink]='["/niveles"]'><i class="fa fa-circle-o"></i>Mantenimiento de Niveles</a></li>
+            <li><a [routerLink]='["/niveles"]'><i class="fa fa-circle-o"></i>Mantenimiento Niveles</a></li>
             <li><a><i class="fa fa-circle-o"></i>Consulta</a></li>
           </ul>
         </li>
@@ -143,9 +141,11 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a ><i class="fa fa-circle-o"></i>Usuarios</a></li>
-          <li><a ><i class="fa fa-circle-o"></i>Roles</a></li>
-          <li><a ><i class="fa fa-circle-o"></i>Opciones</a></li>
+          <!--<li><a><i class="fa fa-circle-o"></i>Usuarios</a></li>-->
+          <li><a [routerLink]='["/usuarios"]'><i class="fa fa-circle-o"></i>Usuarios</a></li>
+          <!--<li><a><i class="fa fa-circle-o"></i>Roles</a></li>-->
+          <li><a [routerLink]='["/funciones"]'><i class="fa fa-circle-o"></i>Roles</a></li>
+          <li><a><i class="fa fa-circle-o"></i>Opciones</a></li>
         </ul>
       </li>
        <li class="treeview">

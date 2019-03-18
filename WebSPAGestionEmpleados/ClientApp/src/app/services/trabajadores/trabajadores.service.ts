@@ -6,7 +6,8 @@ import { serverPath } from '../paths/paths';
 export class TrabajadoresService {
   private headers : HttpHeaders;
   private path: string = serverPath;
-  private ficha : string =  JSON.parse(sessionStorage.getItem("userId")).fichaCd;
+  private ficha: string = JSON.parse(sessionStorage.getItem("userId")).fichaCd;
+  private cedula: string = JSON.parse(sessionStorage.getItem("cedulaId")).cedulaNbr;
   constructor(private http:HttpClient) {
     this.headers = new HttpHeaders();
     this.headers.set("Content-Type", "application/applicaton-json");
@@ -41,5 +42,10 @@ export class TrabajadoresService {
     let url = `${this.path}/api/TrabajadorData/getNivelesInfo?ficha=${this.ficha}`;
     return this.http.get(url, { headers: this.headers });
   }
+
+  //public getUsuariosInfo() {
+  //  let url = `${this.path}/api/TrabajadorData/getUsuariosInfo?cedula=${this.cedula}`;
+  //  return this.http.get(url, { headers: this.headers });
+  //}
 
 }

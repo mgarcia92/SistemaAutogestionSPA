@@ -84,6 +84,7 @@ namespace WebSPAGestionEmpleados
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = new System.TimeSpan(0, 5, 0);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });

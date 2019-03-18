@@ -233,6 +233,7 @@ namespace WebSPAGestionEmpleados.Controllers
                                     on new { ma.CiaCd, ma.FichaCd } equals new { md.CiaCd, md.FichaCd }
                                     //where ma.FichaCd == ficha && md.ParentescoNbr == 0
                                 where md.ParentescoNbr == 0
+                                orderby ma.NominaCd, ma.FichaCd
                                 select new
                                 {
                                     ma.FichaCd,
@@ -256,6 +257,43 @@ namespace WebSPAGestionEmpleados.Controllers
                 return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
             }
         }
+
+        //[HttpGet("[action]")]
+
+        //public Utilies.ResponseResult GetUsuariosInfo(string cedula)
+        //{
+        //    try
+        //    {
+        //        using (_context)
+        //        {
+        //            var data = (from us in _context.Usuarios
+        //                        join md in _context.MaestroDatos
+        //                            on new { us.CiaCd, us.CedulaNbr } equals new { md.CiaCd, md.CedulaNbr }
+        //                        where md.ParentescoNbr == 0
+        //                        orderby us.CedulaNbr
+        //                        select new
+        //                        {
+        //                            us.CedulaNbr,
+        //                            us.RoleCd,
+        //                            md.FichaNm,
+        //                            us.ActivoFg
+        //                        }).ToList();
+
+        //            if (data.Count > 0)
+        //            {
+        //                return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+        //            }
+        //            else
+        //            {
+        //                return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+        //    }
+        //}
 
         // GET: api/TrabajadorData/5
         [HttpGet("{id}", Name = "Get")]

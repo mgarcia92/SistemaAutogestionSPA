@@ -1,3 +1,4 @@
+import { ConfiguracionesService } from './services/configuraciones/configuraciones.service';
 import { EmpresaServiceService } from './services/empresa/empresa-service.service';
 import { FamiliaresComponent } from './components/familiares/familiares.component';
 import { PersonalService } from './services/personal/personal.service';
@@ -27,6 +28,8 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { AumentosComponent } from './components/aumentoSal/aumentoSal.component';
 import { SaldofijoComponent } from './components/saldofijo/saldofijo.component';
 import { NivelesComponent } from './components/niveles/niveles.component';
+import { UsuarioComponent } from './components/usuarios/usuarios.component';
+import { FuncionesComponent } from './components/funciones/funciones.component';
 
 const routes = [
   { path: '', component: LoginComponent },
@@ -40,6 +43,8 @@ const routes = [
   { path: 'niveles', component: NivelesComponent, canActivate: [AuthenticationGuard] },
   // { path: 'counter', component: CounterComponent,CanActivate:[AuthenticationGuard] },
   // { path: 'fetch-data', component: FetchDataComponent,CanActivate:[AuthenticationGuard] },
+  { path: 'usuarios', component: UsuarioComponent, canActivate: [AuthenticationGuard] },
+  { path: 'funciones', component: FuncionesComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({
@@ -59,7 +64,11 @@ const routes = [
     EmpresasComponent,
     AumentosComponent,
     SaldofijoComponent,
-    NivelesComponent
+    NivelesComponent,
+    UsuarioComponent,
+    FuncionesComponent
+
+    //UsuariosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -72,6 +81,7 @@ const routes = [
     LoginServiceService,
     TrabajadoresService,
     EmpresaServiceService,
+    ConfiguracionesService,
     AuthenticationGuard
   ],
   bootstrap: [AppComponent]

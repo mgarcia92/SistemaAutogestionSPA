@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebSPAGestionEmpleados",
+    "\\WebSPAGestionEmpleados\\ClientApp",
+    "\\WebSPAGestionEmpleados\\ClientApp\\src",
+    "\\WebSPAGestionEmpleados\\ClientApp\\src\\app",
+    "\\WebSPAGestionEmpleados\\ClientApp\\src\\app\\services",
+    "\\WebSPAGestionEmpleados\\ClientApp\\src\\app\\services\\configuraciones",
+    "\\WebSPAGestionEmpleados\\ClientApp\\src\\app\\services\\trabajadores",
+    "\\WebSPAGestionEmpleados\\Controllers"
+  ],
+  "SelectedNode": "\\WebSPAGestionEmpleados\\WebSPAGestionEmpleados.csproj",
+  "PreviewInSolutionExplorer": false
+}

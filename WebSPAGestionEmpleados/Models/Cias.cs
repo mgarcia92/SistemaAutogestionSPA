@@ -22,6 +22,7 @@ namespace WebSPAGestionEmpleados.Models
             Promedios = new HashSet<Promedios>();
             PromediosConceptos = new HashSet<PromediosConceptos>();
             PromediosDetalle = new HashSet<PromediosDetalle>();
+            Roles = new HashSet<Roles>();
             Saldos = new HashSet<Saldos>();
             Telefonos = new HashSet<Telefonos>();
             TipoNomina = new HashSet<TipoNomina>();
@@ -52,6 +53,7 @@ namespace WebSPAGestionEmpleados.Models
         public virtual ICollection<Promedios> Promedios { get; set; }
         public virtual ICollection<PromediosConceptos> PromediosConceptos { get; set; }
         public virtual ICollection<PromediosDetalle> PromediosDetalle { get; set; }
+        public virtual ICollection<Roles> Roles { get; set; }
         public virtual ICollection<Saldos> Saldos { get; set; }
         public virtual ICollection<Telefonos> Telefonos { get; set; }
         public virtual ICollection<TipoNomina> TipoNomina { get; set; }

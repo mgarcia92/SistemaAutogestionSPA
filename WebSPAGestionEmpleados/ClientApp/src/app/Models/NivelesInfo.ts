@@ -1,4 +1,4 @@
-export interface NivelesInfo{
+export interface NivelesInfo {
   fichaCd: string,
   fichaNm: string,
   nivelNbr: number,

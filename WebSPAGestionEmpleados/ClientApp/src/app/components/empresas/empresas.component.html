@@ -43,10 +43,10 @@
                       <p><strong>Departamento: </strong>{{empresasData.departamento}}</p>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                      <p><strong>Sueldo Diario: </strong>{{empresasData.sueldo3Sal | currency:'VEF':'symbol-narrow'}}</p>
+                      <p><strong>Sueldo Diario: </strong>{{empresasData.sueldo3Sal | number: '1.2-2'}}</p>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                      <p><strong>Sueldo Mensual: </strong>{{empresasData.sueldoMen | currency:'VEF':'symbol-narrow'}}</p>
+                      <p><strong>Sueldo Mensual: </strong>{{empresasData.sueldoMen | number: '1.2-2'}}</p>
                     </div>
                   </div>
                   <div class="row">

@@ -22,7 +22,7 @@ export class NivelesComponent implements OnInit {
       allowClear: true
     });
   }
-
+  
   public sendDataNivel(form){
     this.message = "";
     let fichas = new Array();
@@ -54,8 +54,6 @@ export class NivelesComponent implements OnInit {
           this.saveSuccess = false;
           this.message = `Se Actualizaron ${count} Registros`;
         }
-
-
 
     });
   }

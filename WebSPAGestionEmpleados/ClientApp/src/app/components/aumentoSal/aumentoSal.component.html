@@ -4,38 +4,38 @@
       <div class="box-header">
         <h3 class="box-title">Histórico de Sueldos y Salarios</h3>
         <!--<div class="box-tools"  [ngStyle]="{'top': '3px'}">
-        <button type="submit"   class="btn btn-primary">Sugerencias</button>
-    </div>-->
+          <button type="submit"   class="btn btn-primary">Sugerencias</button>
+      </div>-->
         <div class="row">
           <div class="col-xs-12 col-md-1 col-md-offset-10">
             <button class="btn btn-primary">Sugerencias</button>
           </div>
         </div>
         <br />
-      </div>
-    </div>
 
-    <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <th align="center">FECHA AUMENTO</th>
-            <th align="center">TIPO</th>
-            <th align="right">DIARIO</th>
-            <th align="right">MENSUAL</th>
-            <th>SECUENCIA</th>
-          </tr>
-          <tr *ngFor="let aumento of aumentosData">
-            <td align="left">{{aumento.sueldoDate | date: 'dd/MM/yyyy'}}</td>
-            <td>{{aumento.sueldoTipo}}</td>
-            <td>{{aumento.sueldoSal | currency:'VEF':'symbol-narrow'}}</td>
-            <td>{{aumento.sueldoMen | currency:'VEF':'symbol-narrow'}}</td>
-            <td>{{aumento.itemNbr | number: '1.0-0'}}</td>
-          </tr>
-           
-        </tbody>
-      </table>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th class="text-center">FECHA AUMENTO</th>
+                <th class="text-center">TIPO</th>
+                <th class="text-right">DIARIO</th>
+                <th class="text-right">MENSUAL</th>
+                <th class="text-center">SECUENCIA</th>
+              </tr>
+              <tr *ngFor="let aumento of aumentosData">
+                <td align="center">{{aumento.sueldoDate | date: 'dd/MM/yyyy'}}</td>
+                <td align="center">{{aumento.sueldoTipo}}</td>
+                <td align="right">{{aumento.sueldoSal | number: '1.2-2'}}</td>
+                <td align="right">{{aumento.sueldoMen | number: '1.2-2'}}</td>
+                <td align="center">{{aumento.itemNbr | number: '1.0-0'}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -72,11 +72,12 @@ namespace WebSPAGestionEmpleados.Controllers
                     {
                       var  data = ( from user in _context.Usuarios
                                     join ma in _context.MaestroDatos on user.CedulaNbr equals ma.CedulaNbr
-                                    where user.LoginUsr == login.LoginUsr.Trim() && user.LoginPwd == login.LoginPwd.Trim()
+                                    where user.LoginUsr == login.LoginUsr.Trim() && user.LoginPwd == login.LoginPwd.Trim() && user.ActivoFg == 1
                                     select new {
                                         user.LoginUsr,
                                         user.CedulaNbr,
                                         user.FotoImg,
+                                        user.RoleCd,
                                         user.CreaDate,
                                         user.CiaCd,
                                         ma.FichaCd,

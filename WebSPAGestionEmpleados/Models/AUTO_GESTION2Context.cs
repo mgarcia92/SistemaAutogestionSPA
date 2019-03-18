@@ -32,6 +32,7 @@ namespace WebSPAGestionEmpleados.Models
         public virtual DbSet<Promedios> Promedios { get; set; }
         public virtual DbSet<PromediosConceptos> PromediosConceptos { get; set; }
         public virtual DbSet<PromediosDetalle> PromediosDetalle { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Saldos> Saldos { get; set; }
         public virtual DbSet<Tablas> Tablas { get; set; }
         public virtual DbSet<Telefonos> Telefonos { get; set; }
@@ -1406,6 +1407,59 @@ namespace WebSPAGestionEmpleados.Models
                     .HasConstraintName("FK_PROMEDIOS_DETALLE_PROMEDIOS");
             });
 
+            modelBuilder.Entity<Roles>(entity =>
+            {
+                entity.HasKey(e => new { e.CiaCd, e.RoleCd });
+
+                entity.ToTable("ROLES");
+
+                entity.Property(e => e.CiaCd)
+                    .HasColumnName("CIA_CD")
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RoleCd).HasColumnName("ROLE_CD");
+
+                entity.Property(e => e.ActivoFg)
+                    .HasColumnName("ACTIVO_FG")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.CreaDate)
+                    .HasColumnName("CREA_DATE")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CreaUsr)
+                    .IsRequired()
+                    .HasColumnName("CREA_USR")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MttoDate)
+                    .HasColumnName("MTTO_DATE")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.MttoUsr)
+                    .IsRequired()
+                    .HasColumnName("MTTO_USR")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.RoleDesc)
+                    .IsRequired()
+                    .HasColumnName("ROLE_DESC")
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("('')");
+
+                entity.HasOne(d => d.CiaCdNavigation)
+                    .WithMany(r => r.Roles)
+                    .HasForeignKey(d => d.CiaCd)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PROCESOS_CIAS");
+            });
+
             modelBuilder.Entity<Saldos>(entity =>
             {
                 entity.HasKey(e => new { e.CiaCd, e.NominaCd, e.FichaCd, e.ConceptoNbr });
@@ -1720,6 +1774,11 @@ namespace WebSPAGestionEmpleados.Models
                 entity.Property(e => e.MttoUsr)
                     .HasColumnName("MTTO_USR")
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RoleCd)
+                    .HasColumnName("ROLE_CD")
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CiaCdNavigation)

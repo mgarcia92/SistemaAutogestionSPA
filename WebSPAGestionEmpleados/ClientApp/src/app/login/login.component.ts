@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
         this.logon = true;
         this.message = "Usuario Autorizado.";
         sessionStorage.clear();
-        sessionStorage.setItem("userId",JSON.stringify(result.data[0]));
+        sessionStorage.setItem("userId", JSON.stringify(result.data[0]));
+        sessionStorage.setItem("cedulaId", JSON.stringify(result.data[0]));
         this.router.navigate(['/home']);
       }else{
         this.message =  result.message;

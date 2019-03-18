@@ -29,6 +29,11 @@ export class LoginServiceService {
     return user.loginUsr;
   }
 
+  getCedId(): string {
+    let user = JSON.parse(sessionStorage.getItem("cedulaId"));
+    return user.loginUsr;
+  }
+
   getUserInfo(): any {
     let user = JSON.parse(sessionStorage.getItem("userId"));
     return user;

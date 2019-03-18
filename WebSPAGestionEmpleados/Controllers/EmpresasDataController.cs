@@ -63,5 +63,38 @@ namespace WebSPAGestionEmpleados.Controllers
                 return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
             }
         }
+
+        [HttpPost("[action]")]
+        public Utilies.ResponseResult SaveUsuario([FromBody]  UsuarioApi usuarioApi)
+        {
+            try
+            {
+                List<KeyValuePair<string, int>> data = new List<KeyValuePair<string, int>>();
+                using (_repository)
+                {
+                    if (usuarioApi.CedulaNbr.Length > 0)
+                    {
+                        foreach (var cedula in usuarioApi.CedulaNbr)
+                        {
+                            var usuario = _repository.model.Usuarios.Where(x => x.CedulaNbr == cedula).FirstOrDefault();
+                            usuario.RoleCd = usuarioApi.RoleCd;
+                            int value = _repository.Modificar(usuario);
+                            data.Add(new KeyValuePair<string, int>(cedula, value));
+                        }
+
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
+        }
+
     }
 }

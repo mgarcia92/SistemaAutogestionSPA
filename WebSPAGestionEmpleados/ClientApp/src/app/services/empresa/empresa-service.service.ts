@@ -6,13 +6,19 @@ import { serverPath } from '../paths/paths';
 export class EmpresaServiceService {
   private headers : HttpHeaders;
   private path: string = serverPath;
+  private mes: number = this.mes;
   private ficha: string = JSON.parse(sessionStorage.getItem("userId")).fichaCd;
-  private cedula: string = JSON.parse(sessionStorage.getItem("cedulaId")).cedulaNbr;
-
+ 
   constructor(private http:HttpClient) {
     this.headers = new HttpHeaders();
     this.headers.set("Content-Type", "application/applicaton-json")
-   }
+  }
+
+  public getCumpleanosInfo() {
+    let url = `${this.path}/api/EmpresasData/GetCumpleanosInfo`;
+
+    return this.http.get(url, { headers: this.headers })
+  }
 
    public SaveNivel(nivel:any) {
     let url = `${this.path}/api/EmpresasData/SaveNivel`;

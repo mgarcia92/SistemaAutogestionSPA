@@ -31,6 +31,83 @@ namespace WebSPAGestionEmpleados.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        //Cumpleaños
+        [HttpGet("[action]")]
+        //public Utilies.ResponseResult GetCumpleanosInfo(Int32 mes)
+        public Utilies.ResponseResult GetCumpleanosInfo()
+        {
+            try
+            {
+                using (_context)
+                {
+                        var data = (from md in _context.MaestroDatos
+                                    join m in _context.Maestro
+                                        on new { md.CiaCd, md.FichaCd } equals new { m.CiaCd, m.FichaCd }
+                                    join tn in _context.TipoNomina
+                                        on new { m.CiaCd, m.NominaCd } equals new { tn.CiaCd, tn.NominaCd }
+                                        //where md.ParentescoNbr == 0 && md.NacimientoDate.Month == mes
+                                    where md.ParentescoNbr == 0 
+                                    orderby md.NacimientoDate.Month, md.NacimientoDate.Day
+                                    select new
+                                    {
+                                        tn.NominaDesc,
+                                        md.FichaNm,
+                                        md.NacimientoDate
+                                        //NacimientoDate = md.NacimientoDate.Day & "/" & md.NacimientoDate.Month
+                                    }).ToList();
+
+                    if (data.Count > 0)
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
+        }
+
+        //Meses
+        [HttpGet("[action]")]
+        public Utilies.ResponseResult GetMesesInfo(string mes)
+        {
+            try
+            {
+                using (_context)
+                {
+
+                    var data = (from ta in _context.Tablas
+                                 where ta.TablaNbr == 910
+                                 orderby ta.ItemNbr
+                                 select new
+                                 {
+                                     ta.ItemNbr,
+                                     ta.TablaDesc
+                                 }).ToList();
+
+                    if (data.Count > 0)
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
+        }
+
+
+
         [HttpPost("[action]")]
         public Utilies.ResponseResult SaveNivel([FromBody]  NivelApi nivelApi)
         {
@@ -64,37 +141,37 @@ namespace WebSPAGestionEmpleados.Controllers
             }
         }
 
-        [HttpPost("[action]")]
-        public Utilies.ResponseResult SaveUsuario([FromBody]  UsuarioApi usuarioApi)
-        {
-            try
-            {
-                List<KeyValuePair<string, int>> data = new List<KeyValuePair<string, int>>();
-                using (_repository)
-                {
-                    if (usuarioApi.CedulaNbr.Length > 0)
-                    {
-                        foreach (var cedula in usuarioApi.CedulaNbr)
-                        {
-                            var usuario = _repository.model.Usuarios.Where(x => x.CedulaNbr == cedula).FirstOrDefault();
-                            usuario.RoleCd = usuarioApi.RoleCd;
-                            int value = _repository.Modificar(usuario);
-                            data.Add(new KeyValuePair<string, int>(cedula, value));
-                        }
+        //[HttpPost("[action]")]
+        //public Utilies.ResponseResult SaveUsuario([FromBody]  UsuarioApi usuarioApi)
+        //{
+        //    try
+        //    {
+        //        List<KeyValuePair<string, int>> data = new List<KeyValuePair<string, int>>();
+        //        using (_repository)
+        //        {
+        //            if (usuarioApi.CedulaNbr.Length > 0)
+        //            {
+        //                foreach (var cedula in usuarioApi.CedulaNbr)
+        //                {
+        //                    var usuario = _repository.model.Usuarios.Where(x => x.CedulaNbr == cedula).FirstOrDefault();
+        //                    usuario.RoleCd = usuarioApi.RoleCd;
+        //                    int value = _repository.Modificar(usuario);
+        //                    data.Add(new KeyValuePair<string, int>(cedula, value));
+        //                }
 
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
-                    }
-                    else
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
-            }
-        }
+        //                return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+        //            }
+        //            else
+        //            {
+        //                return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+        //    }
+        //}
 
     }
 }

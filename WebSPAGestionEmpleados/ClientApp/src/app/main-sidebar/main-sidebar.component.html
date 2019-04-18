@@ -103,9 +103,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a ><i class="fa fa-circle-o"></i>Carta de Aumentos</a></li>
-            <li><a ><i class="fa fa-circle-o"></i>Informaciones generales</a></li>
-            <li><a ><i class="fa fa-circle-o"></i>Cumpleaños del mes</a></li>
+            <li><a><i class="fa fa-circle-o"></i>Carta de Aumentos</a></li>
+            <li><a><i class="fa fa-circle-o"></i>Informaciones generales</a></li>
+            <!--<li><a><i class="fa fa-circle-o"></i>Cumpleaños del mes</a></li>-->
+            <li><a [routerLink]='["/cumpleanos"]'><i class="fa fa-circle-o"></i>Cumpleaños del mes</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -144,8 +145,8 @@
           <!--<li><a><i class="fa fa-circle-o"></i>Usuarios</a></li>-->
           <li><a [routerLink]='["/usuarios"]'><i class="fa fa-circle-o"></i>Usuarios</a></li>
           <!--<li><a><i class="fa fa-circle-o"></i>Roles</a></li>-->
-          <li><a [routerLink]='["/funciones"]'><i class="fa fa-circle-o"></i>Roles</a></li>
-          <li><a><i class="fa fa-circle-o"></i>Opciones</a></li>
+          <li><a [routerLink]='["/roles"]'><i class="fa fa-circle-o"></i>Roles</a></li>
+          <!--<li><a><i class="fa fa-circle-o"></i>Opciones</a></li>-->
         </ul>
       </li>
        <li class="treeview">

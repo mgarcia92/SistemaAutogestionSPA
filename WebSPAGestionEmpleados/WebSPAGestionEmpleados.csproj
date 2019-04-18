@@ -20,20 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ClientApp\src\app\components\funcones\**" />
-    <Compile Remove="ClientApp\src\app\components\roles\**" />
     <Compile Remove="ClientApp\src\app\services\administraciones\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\src\app\components\funcones\**" />
-    <Content Remove="ClientApp\src\app\components\roles\**" />
     <Content Remove="ClientApp\src\app\services\administraciones\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="ClientApp\src\app\components\funcones\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\components\roles\**" />
     <EmbeddedResource Remove="ClientApp\src\app\services\administraciones\**" />
     <None Remove="ClientApp\src\app\components\funcones\**" />
-    <None Remove="ClientApp\src\app\components\roles\**" />
     <None Remove="ClientApp\src\app\services\administraciones\**" />
   </ItemGroup>
   <ItemGroup>

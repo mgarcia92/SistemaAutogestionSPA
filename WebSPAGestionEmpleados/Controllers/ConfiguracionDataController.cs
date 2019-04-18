@@ -23,14 +23,123 @@ namespace WebSPAGestionEmpleados.Controllers
             _repository = new GenericRepository<AUTO_GESTION2Context>(_context);
 
         }
-        // GET: api/ConfiguracionData
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+
+        //Roles
+        [HttpGet("[action]")]
+        public Utilies.ResponseResult GetRolesInfo(string cedula)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                using (_context)
+                {
+
+                    var data = (from ro in _context.Roles
+                                orderby ro.RoleCd
+                                select new
+                                {
+                                    ro.RoleCd,
+                                    ro.RoleDesc,
+                                    ActivoDesc = _context.Tablas.Where(x => x.TablaNbr.Equals(902) && x.ItemNbr.Equals(Int32.Parse(ro.ActivoFg.ToString()))).Select(x => x.TablaDesc).FirstOrDefault()
+                                   ,ro.ActivoFg
+                                    //ActivoDesc = (int.Parse(ro.ActivoFg.ToString()) = "1") ? "ACTIVO" : "INACTIVO"
+                                    //ro.ActivoFg,
+
+                                }).ToList();
+
+                    if (data.Count > 0)
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
         }
 
+        [HttpPost("[action]")]
+        public Utilies.ResponseResult SaveRol([FromBody]  Roles roles)
+        {
+            try
+            {
+                dynamic data = new ExpandoObject();
+                data.save = false;
+                using (_repository)
+                {
+                    var rol = _repository.model.Roles.Where(x => x.RoleCd == roles.RoleCd).FirstOrDefault();
+                    if (rol != null)
+                    {
+                        
+                        rol.RoleDesc = roles.RoleDesc;
+                        rol.ActivoFg = roles.ActivoFg;
+                        int value = _repository.Modificar<Roles>(rol);
+                        if (value > 0)
+                            data.save = !data.save;
 
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        
+                        
+                        rol = _repository.model.Roles.Where(x => x.RoleCd == "TRABAJADORES").FirstOrDefault();
+                        if (rol != null)
+                        {
+                            rol.CiaCd = "ADF";
+                            rol.RoleCd = roles.RoleCd.ToUpper();
+                            rol.RoleDesc = roles.RoleDesc.ToUpper();
+                            rol.ActivoFg = roles.ActivoFg;
+                            int value = _repository.Agregar<Roles>(rol);
+                            if (value > 0)
+                                data.save = !data.save;
+                        }
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
+        }
+        [HttpPost("[action]")]
+        public Utilies.ResponseResult DeleteRol([FromBody]  Roles roles)
+        {
+            try
+            {
+                dynamic data = new ExpandoObject();
+                data.delete = false;
+                using (_repository)
+                {
+                    var rol = _repository.model.Roles.Where(x => x.RoleCd == roles.RoleCd).FirstOrDefault();
+                    if (rol != null)
+                    {
+                        int value = _repository.Eliminar<Roles>(rol);
+                        if (value > 0)
+                            data.delete = !data.delete;
+
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                    else
+                    {
+                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
+            }
+        }
+
+        //Usuarios
         [HttpPost("[action]")]
         public Utilies.ResponseResult SaveUsuario([FromBody]  Usuarios usuarios)
         {
@@ -50,39 +159,6 @@ namespace WebSPAGestionEmpleados.Controllers
                             data.save = !data.save;
 
                         return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
-                    }               
-                    else
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, data);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
-            }
-        }
-
-        [HttpPost("[action]")]
-        public Utilies.ResponseResult SaveFuncion([FromBody]  Roles funciones)
-        {
-            try
-            {
-                dynamic data = new ExpandoObject();
-                data.save = false;
-                using (_repository)
-                {
-                    var funcion = _repository.model.Roles.Where(x => x.RoleCd == funciones.RoleCd).FirstOrDefault();
-                    if (funcion != null)
-                    {
-                        funcion.RoleCd = funciones.RoleCd;
-                        funcion.RoleDesc = funciones.RoleDesc;
-                        funcion.ActivoFg = funcion.ActivoFg;
-                        int value = _repository.Modificar<Roles>(funcion);
-                        if (value > 0)
-                            data.save = !data.save;
-
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
                     }
                     else
                     {
@@ -95,34 +171,6 @@ namespace WebSPAGestionEmpleados.Controllers
                 return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
             }
         }
-
-
-
-        [HttpGet("[action]")]
-        public Utilies.ResponseResult GetRolAutocomplete()
-        {
-            try
-            {
-                using (_context)
-                {
-                    IEnumerable<string> query = _context.Roles.Select(x => x.RoleCd).ToList<string>();
-
-                    if (query.Count() > 0)
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, query);
-                    }
-                    else
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-               return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
-            }
-        }
-
 
         [HttpGet("[action]")]
         public Utilies.ResponseResult GetUsuariosInfo(string cedula)
@@ -144,7 +192,7 @@ namespace WebSPAGestionEmpleados.Controllers
                                     md.FichaNm,
                                     us.ActivoFg,
                                     //ActivoDesc = ""
-                                    ActivoDesc = _context.Tablas.Where(x => x.TablaNbr.Equals(901) && x.ItemNbr.Equals(Int32.Parse(us.ActivoFg.ToString()))).Select(x => x.TablaDesc).FirstOrDefault()
+                                    ActivoDesc = _context.Tablas.Where(x => x.TablaNbr.Equals(902) && x.ItemNbr.Equals(Int32.Parse(us.ActivoFg.ToString()))).Select(x => x.TablaDesc).FirstOrDefault()
                                     //ActivoDesc = _context.Tablas.Where(x => x.TablaNbr.Equals(901) && x.ItemNbr.Equals(us.ActivoFg)).Select(x => x.TablaDesc).FirstOrDefault()
                                 }).ToList();
 
@@ -164,6 +212,7 @@ namespace WebSPAGestionEmpleados.Controllers
             }
         }
 
+        //Estatus
         [HttpGet("[action]")]
         public Utilies.ResponseResult GetEstatusInfo(string estatu)
         {
@@ -173,7 +222,7 @@ namespace WebSPAGestionEmpleados.Controllers
                 {
 
                     var data2 = (from ta in _context.Tablas
-                                where ta.TablaNbr == 901
+                                where ta.TablaNbr == 902
                                 orderby ta.ItemNbr
                                 select new
                                 {
@@ -197,62 +246,5 @@ namespace WebSPAGestionEmpleados.Controllers
             }
         }
 
-        public Utilies.ResponseResult GetFuncionesInfo()
-        {
-            try
-            {
-                using (_context)
-                {
-                    
-                    var data = (from ro in _context.Roles
-                                orderby ro.RoleCd   
-                                select new
-                                {
-                                    ro.RoleCd,
-                                    ro.RoleDesc,
-                                    ro.ActivoFg
-                                }).ToList();
-
-
-                    if (data.Count > 0)
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Succes, data);
-                    }
-                    else
-                    {
-                        return Utilies.ResponseResult.GetResponse("", TypeResponse.Warning, new object[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return Utilies.ResponseResult.GetResponse(ex.Message, TypeResponse.Error, new object[0]);
-            }
-        }
-
-        //// GET: api/ConfiguracionData/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/ConfiguracionData
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT: api/ConfiguracionData/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

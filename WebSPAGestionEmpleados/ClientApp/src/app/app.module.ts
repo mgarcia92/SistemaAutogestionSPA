@@ -28,8 +28,9 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { AumentosComponent } from './components/aumentoSal/aumentoSal.component';
 import { SaldofijoComponent } from './components/saldofijo/saldofijo.component';
 import { NivelesComponent } from './components/niveles/niveles.component';
-import { UsuarioComponent } from './components/usuarios/usuarios.component';
-import { FuncionesComponent } from './components/funciones/funciones.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { CumpleanosComponent } from './components/cumpleanos/cumpleanos.component';
 
 const routes = [
   { path: '', component: LoginComponent },
@@ -43,8 +44,9 @@ const routes = [
   { path: 'niveles', component: NivelesComponent, canActivate: [AuthenticationGuard] },
   // { path: 'counter', component: CounterComponent,CanActivate:[AuthenticationGuard] },
   // { path: 'fetch-data', component: FetchDataComponent,CanActivate:[AuthenticationGuard] },
-  { path: 'usuarios', component: UsuarioComponent, canActivate: [AuthenticationGuard] },
-  { path: 'funciones', component: FuncionesComponent, canActivate: [AuthenticationGuard] },
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthenticationGuard] },
+  { path: 'roles', component: RolesComponent, canActivate: [AuthenticationGuard] },
+  { path: 'cumpleanos', component: CumpleanosComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({
@@ -65,10 +67,10 @@ const routes = [
     AumentosComponent,
     SaldofijoComponent,
     NivelesComponent,
-    UsuarioComponent,
-    FuncionesComponent
+    UsuariosComponent,
+    RolesComponent,
+    CumpleanosComponent
 
-    //UsuariosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

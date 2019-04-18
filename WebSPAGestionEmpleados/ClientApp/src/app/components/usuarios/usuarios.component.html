@@ -19,22 +19,28 @@
               </div>
             </div>
 
-            <div class="col-sm-12 col-md-3">
+            <!--<div class="col-sm-12 col-md-3">
               <div class="form-group">
                 <label>Rol del Trabajador</label>
                 <input type="text" [(ngModel)]="RoleCd" (focus)="loadAutoComplete($event)" class="form-control" name="role" id="role" />
               </div>
-            </div>
-            <!--<div ng-class="{'hide'}">-->
-            <!--<div class="col-sm-12 col-md-3" ng-class="{'hide'}">-->
-            <!--<div class="col-sm-12 col-md-3">
-              <div class="form-group">
-                <label for="activoUsuario">Estatus</label>
-                <input type="number" [(ngModel)]="ActivoFg" min="0" max="1" class="form-control" name="activoUsuario" id="activoUsuario">
-              </div>
-            </div>-->
+             </div>-->
 
-            <!--<!--</div>-->
+            <div class="col-sm-12 col-md-3">
+              <div class="form-group">
+                <label>Rol del Trabajador</label>
+                <select class="form-control select2" [(ngModel)]="RoleCd" id="roleId" name="role" style="width: 100%;">
+                  <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
+
+                  <!--<option *ngFor="let role of roles; let index = index" [value]="roleId" [selected]="index == 2">{{role.value}}</option>-->
+                </select>
+                <!--<option *ngFor="let periodo of periodos"                    [value]="periodo.id" [selected]="default == paralelo.descripcion">{{periodo.fecha_inicio}}</option>-->
+
+
+
+              </div>
+            </div>
+
             <div class="col-sm-12 col-md-3">
               <div class="form-group">
                 <label>Estatus</label>

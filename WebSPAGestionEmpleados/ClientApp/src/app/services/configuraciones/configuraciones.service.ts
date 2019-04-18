@@ -8,9 +8,8 @@ export class ConfiguracionesService {
   private headers: HttpHeaders;
   private path: string = serverPath;
   private cedula: string = JSON.parse(sessionStorage.getItem("cedulaId")).cedulaNbr;
-  private funcion: string;
   private estatu: string;
-
+  
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();
     this.headers.set("Content-Type", "application/applicaton-json");
@@ -27,10 +26,28 @@ export class ConfiguracionesService {
     return this.http.post(url, { 'cedulaNbr': usuario.cedulaNbr, 'roleCd': usuario.roleCd, 'activoFg': usuario.activoFg }, { headers: this.headers });
   }
 
-  public getFuncionesInfo() {
-    //let url = `${this.path}/api/ConfiguracionData/GetFuncionesInfo?cedula=${this.cedula}`;
-    let url = `${this.path}/api/ConfiguracionData/GetFuncionesInfo()`;
+  //Roles
+  public getRolesInfo() {
+    let url = `${this.path}/api/ConfiguracionData/GetRolesInfo?cedula=${this.cedula}`;
     return this.http.get(url, { headers: this.headers });
+  }
+  public SaveRol(rol: any) {
+    let url = `${this.path}/api/ConfiguracionData/SaveRol`;
+    console.log(rol)
+    return this.http.post(url, { 'roleCd': rol.roleCd, 'roleDesc': rol.roleDesc, 'activoFg': rol.activoFg }, { headers: this.headers });
+  }
+  public DeleteRol(rol: any) {
+    let url = `${this.path}/api/ConfiguracionData/DeleteRol`;
+    console.log(rol)
+    return this.http.post(url, { 'roleCd': rol.roleCd}, { headers: this.headers });
+  }
+
+  public getFuncionesInfo() {
+    
+    //let url = `${this.path}/api/ConfiguracionData/GetFuncionesInfo()`;
+    let url = `${this.path}/api/ConfiguracionData/GetFuncionesInfo?cedula=${this.cedula}`;
+    return this.http.get(url, { headers: this.headers });
+
   }
 
   public getEstatusInfo() {
@@ -38,14 +55,10 @@ export class ConfiguracionesService {
     return this.http.get(url, { headers: this.headers });
   }
 
+
   public getRolesAutocomplete() {
     let url = `${this.path}/api/ConfiguracionData/GetRolAutocomplete`;
     return this.http.get(url,{ headers: this.headers });
-  }
-
-  public SaveFuncion(funcion: any) {
-    let url = `${this.path}/api/ConfiguracionData/SaveFuncion`;
-    return this.http.post(url, { 'RoleCd': funcion.roleCd, 'RoleDesc': funcion.roleDesc, 'ActivoFg': funcion.ActivoFg }, { headers: this.headers });
   }
 
 }
